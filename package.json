@@ -1,0 +1,17 @@
+{
+  "name": "leetcode-stats",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "run": "ts-node index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "15.3.0",
+    "typescript": "4.2.4"
+  },
+  "dependencies": {
+    "graphql": "15.5.0",
+    "graphql-request": "3.4.0"
+  }
+}
