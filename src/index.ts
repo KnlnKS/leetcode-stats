@@ -1,4 +1,4 @@
-import * as tools from "simple-svg-tools";
+import * as fs from "fs";
 
 import { generateStatSVG, getSubmissionStats } from "./svg";
 
@@ -10,7 +10,9 @@ const main = async () => {
     },
   } = await getSubmissionStats();
   const svgString = generateStatSVG(allQuestionsCount, acSubmissionNum);
-  const svg = new tools.SVG(svgString);
+  fs.writeFile("generated/stats.svg", svgString, (err) => {
+    if (err) console.log(err);
+  });
 };
 
 main();
