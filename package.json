@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "node -r sucrase/register src",
-    "deploy": "run-s build start",
     "build": "sucrase ./src -d ./build --transforms typescript,imports",
     "start": "node build"
   },
