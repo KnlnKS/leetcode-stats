@@ -9,18 +9,25 @@ on:
 
 jobs:
   build:
+    name: Stats
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: borales/actions-yarn@v2.0.0
+      - name: Use Node.js v14
+      - uses: actions/setup-node@v2
         with:
-          cmd: install
+          node-version: "14"
 
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: deploy
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build JS
+        run: yarn build
+
+      - name: Generate SVG
+        run: yarn start
 
       - name: Commit to the repo
         run: |
