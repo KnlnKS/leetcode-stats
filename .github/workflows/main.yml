@@ -1,0 +1,32 @@
+name: Generate SVG
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: deploy
+
+      - name: Commit to the repo
+        run: |
+          git config --global user.name "knlnks/leetcode-stats"
+          git config --global user.email "soulkks@hotmail.ca"
+          git add .
+          # "echo" returns true so the build succeeds, even if no changed files
+          git commit -m '🎉 Update Generated Files' || echo
+          git push
