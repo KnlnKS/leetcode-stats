@@ -111,23 +111,26 @@
 
           <div class="stat-wrapper top" size="108">
             <div class="problems-solved">Problems Solved</div>
-            <div class="total-solved-count">11</div>
+            <div class="total-solved-count">${acSubmissionNum[0].count}</div>
           </div>
 
           <div class="total-solved-container">
             <div class="stat-wrapper" data-difficulty="Easy">
               <div class="difficulty-label easy">Easy</div>
-              <div class="solved">8<span class="total-count">490</span>
+              <div class="solved">${acSubmissionNum[1].count}<span
+                  class="total-count">${allQuestionsCount[1].count}</span>
               </div>
             </div>
             <div class="stat-wrapper" data-difficulty="Medium">
               <div class="difficulty-label medium">Medium</div>
-              <div class="solved">3<span class="total-count">982</span>
+              <div class="solved">${acSubmissionNum[2].count}<span
+                  class="total-count">${allQuestionsCount[2].count}</span>
               </div>
             </div>
             <div class="stat-wrapper" data-difficulty="Hard">
               <div class="difficulty-label hard">Hard</div>
-              <div class="solved">0<span class="total-count">394</span>
+              <div class="solved">${acSubmissionNum[3].count}<span
+                  class="total-count">${allQuestionsCount[3].count}</span>
               </div>
             </div>
           </div>
