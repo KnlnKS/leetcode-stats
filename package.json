@@ -5,10 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "node -r sucrase/register src",
-    "build": "sucrase ./src -d ./build --transforms typescript,imports"
+    "deploy": "run-s build start",
+    "build": "sucrase ./src -d ./build --transforms typescript,imports",
+    "start": "node build"
   },
   "devDependencies": {
     "@types/node": "15.3.0",
+    "npm-run-all": "4.1.5",
     "sucrase": "3.18.1",
     "typescript": "4.2.4"
   },
