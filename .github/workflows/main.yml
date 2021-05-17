@@ -27,7 +27,7 @@ jobs:
         run: yarn build
 
       - name: Generate SVG
-        run: yarn start
+        run: LEETCODE_USERNAME=${{ secrets.LEETCODE_USERNAME }} yarn start
 
       - name: Commit to the repo
         run: |

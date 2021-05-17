@@ -8,7 +8,7 @@ const main = async () => {
     matchedUser: {
       submitStats: { acSubmissionNum },
     },
-  } = await getSubmissionStats();
+  } = await getSubmissionStats(process.env.LEETCODE_USERNAME);
   const svgString = generateStatSVG(allQuestionsCount, acSubmissionNum);
   fs.writeFile("generated/stats.svg", svgString, (err) => {
     if (err) console.log(err);

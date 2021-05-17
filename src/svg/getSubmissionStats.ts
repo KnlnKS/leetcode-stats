@@ -20,7 +20,7 @@ const query = gql`
   }
 `;
 
-const variables = { username: "knlnks" };
-
-export const getSubmissionStats = async (): Promise<IGetSubmissionStats> =>
-  await request("https://leetcode.com/graphql", query, variables);
+export const getSubmissionStats = async (
+  username
+): Promise<IGetSubmissionStats> =>
+  await request("https://leetcode.com/graphql", query, { username });
