@@ -112,7 +112,7 @@
 
             <div class="stat-wrapper top" size="108">
               <div class="problems-solved">Problems Solved</div>
-              <div class="total-solved-count">25</div>
+              <div class="total-solved-count">26</div>
             </div>
 
             <div class="total-solved-container">
@@ -123,7 +123,7 @@
               </div>
               <div class="stat-wrapper" data-difficulty="Medium">
                 <div class="difficulty-label medium">Medium</div>
-                <div class="solved">8<span class="total-count">987</span>
+                <div class="solved">9<span class="total-count">988</span>
                 </div>
               </div>
               <div class="stat-wrapper" data-difficulty="Hard">
