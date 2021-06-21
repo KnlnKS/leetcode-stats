@@ -118,12 +118,12 @@
             <div class="total-solved-container">
               <div class="stat-wrapper" data-difficulty="Easy">
                 <div class="difficulty-label easy">Easy</div>
-                <div class="solved">21<span class="total-count">499</span>
+                <div class="solved">21<span class="total-count">500</span>
                 </div>
               </div>
               <div class="stat-wrapper" data-difficulty="Medium">
                 <div class="difficulty-label medium">Medium</div>
-                <div class="solved">15<span class="total-count">1003</span>
+                <div class="solved">15<span class="total-count">1006</span>
                 </div>
               </div>
               <div class="stat-wrapper" data-difficulty="Hard">
