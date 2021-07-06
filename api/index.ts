@@ -4,6 +4,7 @@ import { generateStatSVG, getSubmissionStats } from "./svg";
 const app = express();
 
 app.get("/api", async (req, res) => {
+  /*
   const { username } = req?.query;
 
   if (username) {
@@ -19,4 +20,6 @@ app.get("/api", async (req, res) => {
     res.setHeader('Cache-Control', 's-max-age=60, stale-while-revalidate');
     res.status(200).end(generateStatSVG(allQuestionsCount, acSubmissionNum));
   } else res.status(400).end("Missing Parameter");
+  */
+ res.end("yo")
 });
