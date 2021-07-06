@@ -13,7 +13,10 @@ app.get("/api", async (req, res) => {
         submitStats: { acSubmissionNum },
       },
     } = await getSubmissionStats(username);
+
+
     res.setHeader("Content-Type", "image/svg+xml");
+    res.setHeader('Cache-Control', 's-max-age=60, stale-while-revalidate');
     res.status(200).end(generateStatSVG(allQuestionsCount, acSubmissionNum));
   } else res.status(400).end("Missing Parameter");
 });
