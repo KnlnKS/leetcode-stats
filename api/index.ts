@@ -14,6 +14,6 @@ app.get("/api", async (req, res) => {
       },
     } = await getSubmissionStats(username);
     res.setHeader("Content-Type", "image/svg+xml");
-    res.end(generateStatSVG(allQuestionsCount, acSubmissionNum));
-  }
+    res.status(200).end(generateStatSVG(allQuestionsCount, acSubmissionNum));
+  } else res.status(400).end("Missing Parameter");
 });
