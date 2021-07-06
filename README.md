@@ -15,3 +15,8 @@ Which will appear as:
 
 [![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/api?username=KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
 
+## GitHub Actions
+If you don't want to rely on an external api for your LeetCode stats, no need to fear!
+On the following branch is a LeetCode Stats Card generated via GitHub Actions! 
+https://github.com/KnlnKS/leetcode-stats/tree/github-actions
+
