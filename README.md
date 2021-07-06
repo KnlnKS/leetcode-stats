@@ -1,7 +1,17 @@
-# LeetCode Stats
+<p align="center">
+ <h1 align="center">LeetCode Readme Stats</h1>
+ <p align="center">Dynamically generated LeetCode stats for your readmes!</p>
+</p>
 
-![Kunalan's LeetCode Stats](https://github.com/KnlnKS/leetcode-stats/blob/master/generated/stats.svg)
+## How To Use
+Copy-paste this into your markdown content, and that's it. Simple!
+Change the `?username=` value to your LeetCode username.
 
-Generates SVG displaying stats of a LeetCode user. Made for use in GitHub README Profiles.
+```md
+[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/api?username=KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
+```
 
-To use, fork repo and add `LEETCODE_USERNAME` as secret.
+Which will appear as:
+
+[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/api?username=KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
+
