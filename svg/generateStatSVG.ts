@@ -157,6 +157,6 @@ export const generateStatSVG = ({
       </g>
     </g>
   </svg>`,
-    { minifyCSS: true }
+    { minifyCSS: true, collapseWhitespace: true }
   );
 };
