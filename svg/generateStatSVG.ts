@@ -1,10 +1,27 @@
-import { AllQuestionsCountNode, SubmissionCountNode } from "../types";
+import { IGenerateStatSVG, Theme, ThemeColours } from "../types";
 
-export const generateStatSVG = (
-  allQuestionsCount: AllQuestionsCountNode[],
-  acSubmissionNum: SubmissionCountNode[]
-) =>
-  `
+const getThemeColours = (theme?: Theme): ThemeColours => {
+  if (theme === "dark") {
+    return {
+      bg: "#292A2B",
+      text: "#cfccc7",
+      secondaryText: "#7A807C",
+    };
+  }
+  return {
+    bg: "#fff",
+    text: "#262626",
+    secondaryText: "rgba(60, 60, 67, 0.6)",
+  };
+};
+
+export const generateStatSVG = ({
+  allQuestionsCount,
+  acSubmissionNum,
+  theme,
+}: IGenerateStatSVG) => {
+  const { bg, text, secondaryText } = getThemeColours(theme);
+  return `
     <svg width="330" height="180" xmlns="http://www.w3.org/2000/svg">
     <style>
       svg {
@@ -16,10 +33,9 @@ export const generateStatSVG = (
       #background {
         width: calc(100% - 10px);
         height: calc(100% - 10px);
-        fill: white;
+        fill: ${bg};
         rx: 8px;
         ry: 8px;
-
       }
 
       .total-solved-container {
@@ -39,10 +55,8 @@ export const generateStatSVG = (
         text-align: start;
       }
 
-
-
       .problems-solved {
-        color: rgba(60, 60, 67, 0.6);
+        color: ${secondaryText};
         font-size: 12px;
         line-height: 17px;
         margin-bottom: 2px;
@@ -52,11 +66,10 @@ export const generateStatSVG = (
 
       .total-solved-count {
         font-size: 22px;
-        color: #212121;
         font-weight: 600;
         line-height: 100%;
         white-space: nowrap;
-        color: rgb(38, 38, 38);
+        color: ${text};
         font-size: 22px;
       }
 
@@ -86,14 +99,14 @@ export const generateStatSVG = (
       }
 
       .total-solved-container .total-count {
-        color: rgba(60, 60, 67, 0.3);
+        color: ${secondaryText};
         font-size: 12px;
         font-weight: 500;
         line-height: 14px;
       }
 
       .solved {
-        color: rgba(38, 38, 38, 0.75);
+        color: ${text};
         font-size: 14px;
         font-weight: 600;
         line-height: 100%;
@@ -146,3 +159,4 @@ export const generateStatSVG = (
       </g>
     </g>
   </svg>`;
+};

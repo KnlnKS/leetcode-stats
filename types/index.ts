@@ -15,3 +15,17 @@ export interface IGetSubmissionStats {
     };
   };
 }
+
+export type Theme = "light" | "dark";
+
+export interface IGenerateStatSVG {
+  allQuestionsCount: AllQuestionsCountNode[];
+  acSubmissionNum: SubmissionCountNode[];
+  theme?: Theme;
+}
+
+export type ThemeColours = {
+  bg: string;
+  text: string;
+  secondaryText: string;
+};

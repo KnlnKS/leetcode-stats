@@ -6,7 +6,7 @@ const app = express();
 app.get("/", (_, res) => res.send("<em>Nothing here...</em>"));
 
 app.get("/api", async (req, res, next) => {
-  const { username } = req?.query;
+  const { username, theme = "light" } = req?.query;
 
   if (username) {
     let data;
@@ -22,7 +22,9 @@ app.get("/api", async (req, res, next) => {
 
       res.setHeader("Content-Type", "image/svg+xml");
       res.setHeader("Cache-Control", "s-max-age=60, stale-while-revalidate");
-      res.status(200).send(generateStatSVG(allQuestionsCount, acSubmissionNum));
+      res
+        .status(200)
+        .send(generateStatSVG({ allQuestionsCount, acSubmissionNum, theme }));
     } catch (err) {
       res.status(400).send("Username does not exist");
     }
