@@ -1,3 +1,4 @@
+import { minify } from "html-minifier";
 import { IGenerateStatSVG, Theme, ThemeColours } from "../types";
 
 const getThemeColours = (theme?: Theme): ThemeColours => {
@@ -12,7 +13,7 @@ const getThemeColours = (theme?: Theme): ThemeColours => {
       bg: "#1A1B27",
       text: "#70A4FC",
       secondaryText: "#BE90F2",
-      altDiffText: "#38BCAD"
+      altDiffText: "#38BCAD",
     };
   }
   return {
@@ -28,15 +29,15 @@ export const generateStatSVG = ({
   theme,
 }: IGenerateStatSVG) => {
   const { bg, text, secondaryText, altDiffText } = getThemeColours(theme);
-  return `
+  return minify(
+    `
     <svg width="330" height="180" xmlns="http://www.w3.org/2000/svg">
     <style>
       svg {
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
         font-size: 14px;
         line-height: 1.5;
       }
-
       #background {
         width: calc(100% - 10px);
         height: calc(100% - 10px);
@@ -44,7 +45,6 @@ export const generateStatSVG = ({
         rx: 8px;
         ry: 8px;
       }
-
       .total-solved-container {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -55,13 +55,11 @@ export const generateStatSVG = ({
         color: #9e9e9e;
         height: 33px;
       }
-
       .stat-wrapper {
         display: flex;
         flex-direction: column;
         text-align: start;
       }
-
       .problems-solved {
         color: ${secondaryText};
         font-size: 12px;
@@ -70,7 +68,6 @@ export const generateStatSVG = ({
         white-space: nowrap;
         font-weight: 500;
       }
-
       .total-solved-count {
         font-size: 22px;
         font-weight: 600;
@@ -79,7 +76,6 @@ export const generateStatSVG = ({
         color: ${text};
         font-size: 22px;
       }
-
       .difficulty-label {
         font-size: 12px;
         font-weight: normal;
@@ -87,31 +83,25 @@ export const generateStatSVG = ({
         margin-bottom: 2px;
         white-space: nowrap;
       }
-
       .easy {
-        color: ${altDiffText ?? 'rgb(67, 160, 71)'};
+        color: ${altDiffText ?? "rgb(67, 160, 71)"};
       }
-
       .medium {
-        color: ${altDiffText ?? 'rgb(251, 140, 0)'};
+        color: ${altDiffText ?? "rgb(251, 140, 0)"};
       }
-
       .hard {
-        color: ${altDiffText ?? 'rgb(233, 30, 99)'};
+        color: ${altDiffText ?? "rgb(233, 30, 99)"};
       }
-
       .total-solved-container .total-count::before {
         content: '/';
         margin: 0 1px;
       }
-
       .total-solved-container .total-count {
         color: ${secondaryText};
         font-size: 12px;
         font-weight: 500;
         line-height: 14px;
       }
-
       .solved {
         color: ${text};
         font-size: 14px;
@@ -119,12 +109,9 @@ export const generateStatSVG = ({
         line-height: 100%;
         white-space: nowrap;
       }
-
       .top {
         height: 108px;
       }
-
-
       foreignObject {
         width: calc(100% - 10px - 32px);
         height: calc(100% - 10px - 24px);
@@ -144,26 +131,32 @@ export const generateStatSVG = ({
             <div class="total-solved-container">
               <div class="stat-wrapper" data-difficulty="Easy">
                 <div class="difficulty-label easy">Easy</div>
-                <div class="solved">${acSubmissionNum[1].count}<span class="total-count">${allQuestionsCount[1].count}</span>
+                <div class="solved">${
+                  acSubmissionNum[1].count
+                }<span class="total-count">${allQuestionsCount[1].count}</span>
                 </div>
               </div>
               <div class="stat-wrapper" data-difficulty="Medium">
                 <div class="difficulty-label medium">Medium</div>
-                <div class="solved">${acSubmissionNum[2].count}<span class="total-count">${allQuestionsCount[2].count}</span>
+                <div class="solved">${
+                  acSubmissionNum[2].count
+                }<span class="total-count">${allQuestionsCount[2].count}</span>
                 </div>
               </div>
               <div class="stat-wrapper" data-difficulty="Hard">
                 <div class="difficulty-label hard">Hard</div>
-                <div class="solved">${acSubmissionNum[3].count}<span class="total-count">${allQuestionsCount[3].count}</span>
+                <div class="solved">${
+                  acSubmissionNum[3].count
+                }<span class="total-count">${allQuestionsCount[3].count}</span>
                 </div>
               </div>
             </div>
 
-
           </div>
-
         </foreignObject>
       </g>
     </g>
-  </svg>`;
+  </svg>`,
+    { minifyCSS: true, collapseWhitespace: true }
+  );
 };
