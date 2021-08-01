@@ -16,7 +16,7 @@ export interface IGetSubmissionStats {
   };
 }
 
-export type Theme = "light" | "dark";
+export type Theme = "light" | "dark" | "midnight";
 
 export interface IGenerateStatSVG {
   allQuestionsCount: AllQuestionsCountNode[];
@@ -28,4 +28,5 @@ export type ThemeColours = {
   bg: string;
   text: string;
   secondaryText: string;
+  altDiffText?: string;
 };

@@ -7,6 +7,13 @@ const getThemeColours = (theme?: Theme): ThemeColours => {
       text: "#cfccc7",
       secondaryText: "#7A807C",
     };
+  } else if (theme === "midnight") {
+    return {
+      bg: "#1A1B27",
+      text: "#70A4FC",
+      secondaryText: "#BE90F2",
+      altDiffText: "#38BCAD"
+    };
   }
   return {
     bg: "#fff",
@@ -20,7 +27,7 @@ export const generateStatSVG = ({
   acSubmissionNum,
   theme,
 }: IGenerateStatSVG) => {
-  const { bg, text, secondaryText } = getThemeColours(theme);
+  const { bg, text, secondaryText, altDiffText } = getThemeColours(theme);
   return `
     <svg width="330" height="180" xmlns="http://www.w3.org/2000/svg">
     <style>
@@ -82,15 +89,15 @@ export const generateStatSVG = ({
       }
 
       .easy {
-        color: rgb(67, 160, 71);
+        color: ${altDiffText ?? 'rgb(67, 160, 71)'};
       }
 
       .medium {
-        color: rgb(251, 140, 0);
+        color: ${altDiffText ?? 'rgb(251, 140, 0)'};
       }
 
       .hard {
-        color: rgb(233, 30, 99);
+        color: ${altDiffText ?? 'rgb(233, 30, 99)'};
       }
 
       .total-solved-container .total-count::before {
