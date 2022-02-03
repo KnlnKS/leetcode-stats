@@ -8,6 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "1.8.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^5",
     "graphql": "16.3.0",
     "graphql-request": "4.0.0",
     "html-minifier": "4.0.0",

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { ChakraProvider } from "@chakra-ui/react";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -35,7 +36,9 @@ function MyApp({ Component, pageProps }) {
           sizes="192x192"
         />
       </Head>
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </>
   );
 }
