@@ -1,7 +1,5 @@
 import { request, gql } from "graphql-request";
 
-import { IGetSubmissionStats } from "../types";
-
 const query = gql`
   query getUserProfile($username: String!) {
     allQuestionsCount {
@@ -20,7 +18,5 @@ const query = gql`
   }
 `;
 
-export const getSubmissionStats = async (
-  username
-): Promise<IGetSubmissionStats> =>
+export const getSubmissionStats = async (username) =>
   await request("https://leetcode.com/graphql", query, { username });

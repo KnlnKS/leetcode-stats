@@ -1,25 +1,26 @@
 {
   "name": "leetcode-stats",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "dev": "node -r sucrase/register ./",
-    "build": "sucrase ./ -d ./ --transforms typescript,imports",
-    "start": "node build"
-  },
-  "devDependencies": {
-    "@types/express": "4.17.12",
-    "@types/html-minifier": "4.0.1",
-    "@types/node": "15.3.0",
-    "npm-run-all": "4.1.5",
-    "sucrase": "3.18.1",
-    "typescript": "4.2.4"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "express": "4.17.1",
-    "graphql": "15.5.0",
-    "graphql-request": "3.4.0",
-    "html-minifier": "4.0.0"
+    "@chakra-ui/react": "1.8.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^5",
+    "graphql": "16.3.0",
+    "graphql-request": "4.0.0",
+    "html-minifier": "4.0.0",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.10"
   }
 }

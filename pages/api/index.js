@@ -1,11 +1,6 @@
-import express from "express";
-import { generateStatSVG, getSubmissionStats } from "./svg";
+import { generateStatSVG, getSubmissionStats } from "../../src";
 
-const app = express();
-
-app.get("/", (_, res) => res.send("<em>Nothing here...</em>"));
-
-app.get("/api", async (req, res, next) => {
+export default async function handler(req, res) {
   const { username, theme = "light" } = req?.query;
 
   if (username) {
@@ -29,9 +24,4 @@ app.get("/api", async (req, res, next) => {
       res.status(400).send("Username does not exist");
     }
   } else res.status(400).send("Missing Parameter");
-});
-
-const port = process.env.PORT || 2001;
-app.listen(port, () =>
-  console.log(`Server running on ${port}, http://localhost:${port}`)
-);
+}

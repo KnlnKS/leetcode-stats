@@ -1,7 +1,6 @@
 import { minify } from "html-minifier";
-import { IGenerateStatSVG, Theme, ThemeColours } from "../types";
 
-const getThemeColours = (theme?: Theme): ThemeColours => {
+const getThemeColours = (theme) => {
   if (theme === "dark") {
     return {
       bg: "#292A2B",
@@ -27,7 +26,7 @@ export const generateStatSVG = ({
   allQuestionsCount,
   acSubmissionNum,
   theme,
-}: IGenerateStatSVG) => {
+}) => {
   const { bg, text, secondaryText, altDiffText } = getThemeColours(theme);
   return minify(
     `
