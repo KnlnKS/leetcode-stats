@@ -6,7 +6,23 @@ import (
 	"github.com/machinebox/graphql"
 )
 
-func GetSubmissionStats(username string) (interface{}, error) {
+type SubmissionData struct {
+	AllQuestionsCount []struct {
+		Difficulty string `json:"difficulty"`
+		Count      int    `json:"count"`
+	} `json:"allQuestionsCount"`
+	MatchedUser struct {
+		SubmitStats struct {
+			AcSubmissionNum []struct {
+				Difficulty  string `json:"difficulty"`
+				Count       int    `json:"count"`
+				Submissions int    `json:"submissions"`
+			} `json:"acSubmissionNum"`
+		} `json:"submitStats"`
+	} `json:"matchedUser"`
+}
+
+func GetSubmissionStats(username string) (SubmissionData, error) {
 	client := graphql.NewClient("https://leetcode.com/graphql")
 
 	req := graphql.NewRequest(`
@@ -30,9 +46,9 @@ func GetSubmissionStats(username string) (interface{}, error) {
 
 	ctx := context.Background()
 
-	var respData interface{}
+	var respData SubmissionData
 	if err := client.Run(ctx, req, &respData); err != nil {
-		return nil, err
+		return respData, err
 	}
 	return respData, nil
 }

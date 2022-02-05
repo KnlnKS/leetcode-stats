@@ -10,12 +10,12 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
 	var q = r.URL.Query()
 	if q["username"] != nil && len(q["username"][0]) > 0 {
-		respData, err := src.GetSubmissionStats(q["username"][0])
+		submissionData, err := src.GetSubmissionStats(q["username"][0])
 		if err != nil {
 			fmt.Fprintf(w, "Error: %v", err)
 			return
 		}
-		log.Print(respData)
+		log.Print(submissionData)
 	}
 	w.Header().Add("Content-Type", "image/svg+xml")
 	w.Header().Add("Cache-Control", "s-max-age=60, stale-while-revalidate")
