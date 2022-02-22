@@ -16,9 +16,9 @@ func GenerateTheme(theme string) Theme {
 			Background:       "#292A2B",
 			Text:             "#CFCCC7",
 			SecondaryText:    "#7A807C",
-			EasyDifficulty:   "rgb(67, 160, 71)",
-			MediumDifficulty: "rgb(251, 140, 0)",
-			HardDifficulty:   "rgb(233, 30, 99)",
+			EasyDifficulty:   "#43A047",
+			MediumDifficulty: "#FB8C00",
+			HardDifficulty:   "#E91E63",
 		}
 	case "midnight":
 		return Theme{
@@ -33,10 +33,10 @@ func GenerateTheme(theme string) Theme {
 		return Theme{
 			Background:       "#FFF",
 			Text:             "#262626",
-			SecondaryText:    "rgba(60, 60, 67, 0.6)",
-			EasyDifficulty:   "rgb(67, 160, 71)",
-			MediumDifficulty: "rgb(251, 140, 0)",
-			HardDifficulty:   "rgb(233, 30, 99)",
+			SecondaryText:    "#8A8A8E",
+			EasyDifficulty:   "#43A047",
+			MediumDifficulty: "#FB8C00",
+			HardDifficulty:   "#E91E63",
 		}
 	}
 }
