@@ -18,7 +18,3 @@ func GetSubmissionStatsTemplate() *template.Template {
 	}
 	return tmpl
 }
-
-func GetPath() string {
-	return basepath
-}
