@@ -12,7 +12,7 @@ var (
 )
 
 func GetSubmissionStatsTemplate() *template.Template {
-	tmpl, err := template.ParseFiles("/vercel/templates/submissionData.svg")
+	tmpl, err := template.ParseFiles(basepath + "/submissionData.svg")
 	if err != nil {
 		panic(err)
 	}
