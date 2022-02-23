@@ -2,6 +2,7 @@ package templates
 
 import (
 	"html/template"
+	"os"
 	"path/filepath"
 	"runtime"
 )
@@ -19,6 +20,20 @@ func GetSubmissionStatsTemplate() *template.Template {
 	return tmpl
 }
 
-func GetPath() string {
-	return basepath
+func visit(files *[]string) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		*files = append(*files, path)
+		return nil
+	}
+}
+
+func GetPath() []string {
+	var files []string
+
+	err := filepath.Walk(basepath, visit(&files))
+	if err != nil {
+		panic(err)
+	}
+
+	return files
 }
