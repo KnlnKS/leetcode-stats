@@ -2,14 +2,8 @@ package handler
 
 import (
 	"fmt"
+	"leetcode-stats/templates"
 	"net/http"
-	"path/filepath"
-	"runtime"
-)
-
-var (
-	_, b, _, _ = runtime.Caller(0)
-	basepath   = filepath.Dir(b)
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -18,7 +12,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Cache-Control", "s-max-age=60, stale-while-revalidate")
 	if q["username"] != nil && len(q["username"][0]) > 0 {
 
-		fmt.Fprintf(w, basepath)
+		fmt.Fprintf(w, templates.GetPath())
 	} else {
 		fmt.Fprintf(w, "<svg>Something went wrong s</svg>")
 	}
