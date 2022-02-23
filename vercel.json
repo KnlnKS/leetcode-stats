@@ -1,0 +1,7 @@
+{
+    "functions": {
+      "api/index.go": {
+        "includeFiles": "templates/**"
+      }
+    }
+  }
