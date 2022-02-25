@@ -25,7 +25,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		tmpl := templates.GetSubmissionStatsTemplate()
-		tmpl.Execute(w, struct {
+		tmpl.ExecuteTemplate(w, "T", struct {
 			SubmissionData src.SubmissionData
 			Theme          src.Theme
 		}{
