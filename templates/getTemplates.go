@@ -26,6 +26,7 @@ func visit(files *[]string) filepath.WalkFunc {
 
 func GetSubmissionStatsTemplate() *template.Template {
 	var files []string
+	log.Print("yo")
 	err := filepath.Walk(basepath, visit(&files))
 	if err != nil {
 		panic(err)
