@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/index.go": {
-        "includeFiles": "templates/**"
+        "includeFiles": "templates/submissionData.svg"
       }
     }
   }
