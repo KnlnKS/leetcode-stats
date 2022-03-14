@@ -10,7 +10,9 @@ async function handler(event) {
   }
 
   const chrome = new Chrome();
-  await chrome.getPage(`https://leetcode.com/${username}`, theme);
+  await chrome
+    .getPage(`https://leetcode.com/${username}`, theme)
+    .then(() => wait(1000));
   await chrome.page.evaluate(() => {
     const listboxButton = document.querySelector(
       "#headlessui-listbox-button-5"

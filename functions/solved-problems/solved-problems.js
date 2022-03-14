@@ -1,4 +1,5 @@
 import Chrome from "../../src/chrome";
+import { wait } from "../../src/helpers";
 
 async function handler(event) {
   const { username, theme = "light" } = event.queryStringParameters;
@@ -10,7 +11,9 @@ async function handler(event) {
   }
 
   const chrome = new Chrome();
-  await chrome.getPage(`https://leetcode.com/${username}`, theme);
+  await chrome
+    .getPage(`https://leetcode.com/${username}`, theme)
+    .then(() => wait(1000));
   const image = await chrome.takeScreenshot(".min-w-max");
 
   return {
