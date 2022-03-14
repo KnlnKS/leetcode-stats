@@ -1,4 +1,3 @@
 [build]
   command = "# no build command"
   functions = "functions"
-  publish = "public"
