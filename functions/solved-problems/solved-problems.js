@@ -1,6 +1,6 @@
-import Chrome from "../chrome";
+import Chrome from "../../chrome";
 
-async function handler(event, context) {
+async function handler(event) {
   const { username, theme = "light" } = JSON.parse(event.body);
   if (!username) {
     res.status(400).send("Username is required");
