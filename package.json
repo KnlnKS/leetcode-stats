@@ -1,0 +1,8 @@
+{
+  "name": "leetcode-stats",
+  "version": "2.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KnlnKS/leetcode-stats.git",
+  "author": "KnlnKS <soulkks@hotmail.ca>",
+  "license": "MIT"
+}
