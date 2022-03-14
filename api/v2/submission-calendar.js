@@ -1,18 +1,14 @@
-import Chrome from "../../src/chrome";
+import Chrome from "../../chrome";
 
-async function handler(event) {
-  const { username, theme = "light" } = event.queryStringParameters;
+async function handler(req, res) {
+  const { username, theme = "light" } = req.query;
   if (!username) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ message: `Error, no username provided!` }),
-    };
+    res.status(400).send("Username is required");
+    return;
   }
 
   const chrome = new Chrome();
-  await chrome
-    .getPage(`https://leetcode.com/${username}`, theme)
-    .then(() => wait(1000));
+  await chrome.getPage(`https://leetcode.com/${username}`, theme);
   await chrome.page.evaluate(() => {
     const listboxButton = document.querySelector(
       "#headlessui-listbox-button-5"
@@ -32,14 +28,9 @@ async function handler(event) {
     true
   );
 
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-type": "image/png",
-    },
-    body: image.toString("base64"),
-    isBase64Encoded: true,
-  };
+  res.setHeader("Content-Type", "image/png");
+  res.setHeader('Cache-Control', 's-maxage=3600');
+  res.status(200).send(image);
 }
 
-module.exports = { handler };
+export default handler;
