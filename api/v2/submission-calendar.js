@@ -1,4 +1,4 @@
-import getBrowserInstance from "../../browser/getBrowserInstance";
+import Chrome from "../../chrome";
 
 async function handler(req, res) {
   const { username, theme = "light" } = req.query;
@@ -11,18 +11,9 @@ async function handler(req, res) {
     return;
   }
 
-  const browser = await getBrowserInstance();
-  const page = await browser.newPage();
-  await page.goto(`https://leetcode.com/${username}`);
-  if (theme === "dark") {
-    await page.emulateMediaFeatures([
-      {
-        name: "prefers-color-scheme",
-        value: "dark",
-      },
-    ]);
-  }
-  await page.evaluate(() => {
+  const chrome = new Chrome();
+  await chrome.getPage(`https://leetcode.com/${username}`, theme);
+  await chrome.page.evaluate(() => {
     const listboxButton = document.querySelector(
       "#headlessui-listbox-button-5"
     );
@@ -36,11 +27,11 @@ async function handler(req, res) {
     ).singleNodeValue;
     infoButton.parentNode.removeChild(infoButton);
   });
-  const element = (
-    await page.$x('//*[@id="__next"]/body/div/div/div/div[2]/div[2]/div')
-  )[0];
-  const image = await element.screenshot();
-  browser.close();
+  const image = await chrome.takeScreenshot(
+    '//*[@id="__next"]/body/div/div/div/div[2]/div[2]/div',
+    true
+  );
+  chrome.close();
 
   res.setHeader("Content-Type", "image/png");
   res.status(200).send(image);
