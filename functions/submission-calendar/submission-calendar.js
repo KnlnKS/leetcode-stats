@@ -40,4 +40,4 @@ async function handler(event) {
   };
 }
 
-export default handler;
+module.exports = { handler }
