@@ -29,6 +29,7 @@ async function handler(req, res) {
   );
 
   res.setHeader("Content-Type", "image/png");
+  res.setHeader('Cache-Control', 's-maxage=3600');
   res.status(200).send(image);
 }
 
