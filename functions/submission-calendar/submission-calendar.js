@@ -1,7 +1,7 @@
 import Chrome from "../../chrome";
 
 async function handler(event) {
-  const { username, theme = "light" } = JSON.parse(event.body);
+  const { username, theme = "light" } = event.queryStringParameters;
   if (!username) {
     return {
       statusCode: 400,
@@ -40,4 +40,4 @@ async function handler(event) {
   };
 }
 
-module.exports = { handler }
+module.exports = { handler };
