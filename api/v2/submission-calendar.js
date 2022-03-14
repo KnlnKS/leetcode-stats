@@ -22,7 +22,23 @@ async function handler(req, res) {
       },
     ]);
   }
-  const element = await page.$(".min-w-max");
+  await page.evaluate(() => {
+    const listboxButton = document.querySelector(
+      "#headlessui-listbox-button-5"
+    );
+    listboxButton.parentNode.removeChild(listboxButton);
+    const infoButton = document.evaluate(
+      '//*[@id="__next"]/body/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div',
+      document,
+      null,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
+      null
+    ).singleNodeValue;
+    infoButton.parentNode.removeChild(infoButton);
+  });
+  const element = (
+    await page.$x('//*[@id="__next"]/body/div/div/div/div[2]/div[2]/div')
+  )[0];
   const image = await element.screenshot();
   browser.close();
 
