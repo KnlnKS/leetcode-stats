@@ -1,7 +1,7 @@
-import Chrome from "../../chrome";
+import Chrome from "../chrome";
 
-async function handler(req, res) {
-  const { username, theme = "light" } = req.query;
+async function handler(event, context) {
+  const { username, theme = "light" } = JSON.parse(event.body);
   if (!username) {
     res.status(400).send("Username is required");
     return;
