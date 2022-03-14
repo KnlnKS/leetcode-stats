@@ -3,8 +3,10 @@ import Chrome from "../../chrome";
 async function handler(event) {
   const { username, theme = "light" } = JSON.parse(event.body);
   if (!username) {
-    res.status(400).send("Username is required");
-    return;
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: `Error, no username provided!` }),
+    };
   }
 
   const chrome = new Chrome();
@@ -28,9 +30,14 @@ async function handler(event) {
     true
   );
 
-  res.setHeader("Content-Type", "image/png");
-  res.setHeader('Cache-Control', 's-maxage=3600');
-  res.status(200).send(image);
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-type": "image/png",
+    },
+    body: image.toString("base64"),
+    isBase64Encoded: true,
+  };
 }
 
 export default handler;
