@@ -1,4 +1,4 @@
-import Chrome from "../../chrome";
+import Chrome from "../../src/chrome";
 
 async function handler(event) {
   const { username, theme = "light" } = event.queryStringParameters;
