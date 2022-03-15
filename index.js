@@ -1,10 +1,5 @@
 const chromium = require("chrome-aws-lambda");
 const redis = require("redis");
-const client = redis.createClient({
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-  password: process.env.REDIS_PASSWORD,
-});
 
 class Chrome {
   constructor() {
@@ -80,6 +75,13 @@ exports.handler = async function (event) {
       body: JSON.stringify({ message: `Error, invalid theme!` }),
     };
   }
+
+  const client = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD,
+  });
+  await client.connect();
 
   const value = await client
     .get(`${username}:${theme}`)
