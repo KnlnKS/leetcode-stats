@@ -1,6 +1,6 @@
-const chromium = require("chrome-aws-lambda");
+import chromium from "chrome-aws-lambda";
 
-class Chrome {
+export default class Chrome {
   constructor() {
     this.browser = null;
     this.page = null;
@@ -8,8 +8,7 @@ class Chrome {
 
   async getBrowserInstance() {
     const executablePath = await chromium.executablePath;
-
-    this.browser = await chromium.puppeteer.launch({
+    const options = {
       args: chromium.args,
       headless: true,
       defaultViewport: {
@@ -18,9 +17,15 @@ class Chrome {
         deviceScaleFactor: 5,
       },
       ignoreHTTPSErrors: true,
-      executablePath,
-      headless: chromium.headless,
-    });
+    };
+
+    this.browser = await (!executablePath
+      ? require("puppeteer").launch(options)
+      : chromium.puppeteer.launch({
+          ...options,
+          executablePath,
+          headless: chromium.headless,
+        }));
   }
 
   async getPage(url, theme) {
@@ -59,5 +64,3 @@ class Chrome {
     return await this.page.evaluate(fn);
   }
 }
-
-exports.Chrome = Chrome;
