@@ -1,0 +1,12 @@
+{
+  "name": "leetcode-stats",
+  "version": "2.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KnlnKS/leetcode-stats.git",
+  "author": "KnlnKS <soulkks@hotmail.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "10.1.0",
+    "puppeteer": "13.5.1"
+  }
+}
