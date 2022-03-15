@@ -1,4 +1,10 @@
 const chromium = require("chrome-aws-lambda");
+const redis = require("redis");
+const client = redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD,
+});
 
 class Chrome {
   constructor() {
@@ -75,16 +81,26 @@ exports.handler = async function (event) {
     };
   }
 
+  const value = await client
+    .get(`${username}:${theme}`)
+    .then((resp) => JSON.parse(resp));
+  if (value.headers["Cache-Control"] < Date.now()) {
+    return value;
+  }
+
   const chrome = new Chrome();
   await chrome.getPage(`https://leetcode.com/${username}`, theme);
   const image = await chrome.takeScreenshot(".min-w-max");
-
-  return {
+  const resp = {
     statusCode: 200,
     headers: {
       "Content-type": "image/png",
+      "Cache-Control": Date.now() + 1000 * 60 * 60,
     },
     body: image.toString("base64"),
     isBase64Encoded: true,
   };
+
+  await client.set(`${username}:${theme}`, JSON.stringify(resp));
+  return resp;
 };
