@@ -7,6 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "chrome-aws-lambda": "10.1.0",
-    "puppeteer-core": "13.5.1"
+    "net": "1.0.2",
+    "puppeteer-core": "13.5.1",
+    "redis": "4.0.4",
+    "tls": "0.0.1"
   }
 }
