@@ -70,7 +70,7 @@ exports.handler = async function (event) {
 
   const chrome = new Chrome();
   await chrome.getPage(`https://leetcode.com/${username}`, theme);
-  const image = await chrome.takeScreenshot(".min-w-max");
+  const image = await chrome.page.screenshot({ fullPage: true });
 
   return {
     statusCode: 200,
