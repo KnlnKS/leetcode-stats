@@ -8,7 +8,8 @@ class Chrome {
 
   async getBrowserInstance() {
     const executablePath = await chromium.executablePath;
-    const options = {
+
+    this.browser = await chromium.puppeteer.launch({
       args: chromium.args,
       headless: true,
       defaultViewport: {
@@ -16,15 +17,9 @@ class Chrome {
         height: 1080,
       },
       ignoreHTTPSErrors: true,
-    };
-
-    this.browser = await (!executablePath
-      ? require("puppeteer").launch(options)
-      : chromium.puppeteer.launch({
-          ...options,
-          executablePath,
-          headless: chromium.headless,
-        }));
+      executablePath,
+      headless: chromium.headless,
+    });
   }
 
   async getPage(url, theme) {
