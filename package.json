@@ -6,6 +6,7 @@
   "author": "KnlnKS <soulkks@hotmail.ca>",
   "license": "MIT",
   "dependencies": {
-    "chrome-aws-lambda": "10.1.0"
+    "chrome-aws-lambda": "10.1.0",
+    "puppeteer-core": "13.5.1"
   }
 }
