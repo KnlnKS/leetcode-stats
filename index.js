@@ -64,7 +64,7 @@ export default class Chrome {
   }
 }
 
-async function handler(event) {
+exports.handler = async function (event) {
   const { username, theme = "light" } = event.queryStringParameters;
   if (!username) {
     return {
@@ -85,6 +85,4 @@ async function handler(event) {
     body: image.toString("base64"),
     isBase64Encoded: true,
   };
-}
-
-module.exports = { handler };
+};
