@@ -85,7 +85,7 @@ exports.handler = async function (event) {
   const value = await client
     .get(`${username}:${theme}`)
     .then((resp) => JSON.parse(resp));
-  if (value && value.headers["Cache-Control"] < Date.now()) {
+  if (value !== null && value.headers["Cache-Control"] > Date.now()) {
     return value;
   }
 
