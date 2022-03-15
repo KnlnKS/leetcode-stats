@@ -68,6 +68,12 @@ exports.handler = async function (event) {
       body: JSON.stringify({ message: `Error, no username provided!` }),
     };
   }
+  if (!["light", "dark"].includes(theme)) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: `Error, invalid theme!` }),
+    };
+  }
 
   const chrome = new Chrome();
   await chrome.getPage(`https://leetcode.com/${username}`, theme);
