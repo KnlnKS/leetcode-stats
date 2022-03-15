@@ -5,6 +5,9 @@
   "repository": "https://github.com/KnlnKS/leetcode-stats.git",
   "author": "KnlnKS <soulkks@hotmail.ca>",
   "license": "MIT",
+  "scripts": {
+    "test": "node -e \"console.log(require('./index').handler(require('./event.json')));\""
+  },
   "dependencies": {
     "chrome-aws-lambda": "8.0.2",
     "net": "1.0.2",
