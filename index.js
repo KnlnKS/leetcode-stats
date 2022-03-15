@@ -15,7 +15,7 @@ class Chrome {
       defaultViewport: {
         width: 1920,
         height: 1080,
-        deviceScaleFactor: 5,
+        deviceScaleFactor: 2,
       },
       ignoreHTTPSErrors: true,
       executablePath,
