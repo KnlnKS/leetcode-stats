@@ -1,4 +1,4 @@
-import chromium from "chrome-aws-lambda";
+const chromium = require("chrome-aws-lambda");
 
 export default class Chrome {
   constructor() {
