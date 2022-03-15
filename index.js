@@ -1,6 +1,6 @@
 const chromium = require("chrome-aws-lambda");
 
-export default class Chrome {
+class Chrome {
   constructor() {
     this.browser = null;
     this.page = null;
