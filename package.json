@@ -6,13 +6,16 @@
   "author": "KnlnKS <soulkks@hotmail.ca>",
   "license": "MIT",
   "scripts": {
-    "test": "node -e \"console.log(require('./index').handler(require('./event.json')));\""
+    "test": "node -e \"require('dotenv').config() && console.log(require('./index').handler(require('./event.json')));\""
   },
   "dependencies": {
     "chrome-aws-lambda": "8.0.2",
+    "ioredis": "4.28.5",
     "net": "1.0.2",
     "puppeteer-core": "8.0.0",
-    "redis": "4.0.4",
     "tls": "0.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "16.0.0"
   }
 }

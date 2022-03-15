@@ -1,5 +1,5 @@
 const chromium = require("chrome-aws-lambda");
-const redis = require("redis");
+const redis = require("ioredis");
 
 class Chrome {
   constructor() {
@@ -81,12 +81,11 @@ exports.handler = async function (event) {
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PASSWORD,
   });
-  await client.connect();
 
   const value = await client
     .get(`${username}:${theme}`)
     .then((resp) => JSON.parse(resp));
-  if (value.headers["Cache-Control"] < Date.now()) {
+  if (value && value.headers["Cache-Control"] < Date.now()) {
     return value;
   }
 
