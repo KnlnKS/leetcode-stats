@@ -86,6 +86,7 @@ exports.handler = async function (event) {
     .get(`${username}:${theme}`)
     .then((resp) => JSON.parse(resp));
   if (value !== null && value.headers["Cache-Control"] > Date.now()) {
+    await client.quit();
     return value;
   }
 
@@ -101,7 +102,9 @@ exports.handler = async function (event) {
     body: image.toString("base64"),
     isBase64Encoded: true,
   };
+  chrome.close();
 
   await client.set(`${username}:${theme}`, JSON.stringify(resp));
+  await client.quit();
   return resp;
 };
