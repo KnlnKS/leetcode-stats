@@ -19,8 +19,9 @@ type SubmissionData struct {
 		} `json:"problemsSolvedBeatsStats"`
 		SubmitStatsGlobal struct {
 			AcSubmissionNum []struct {
-				Difficulty string `json:"difficulty"`
-				Count      int    `json:"count"`
+				Difficulty string  `json:"difficulty"`
+				Count      int     `json:"count"`
+				Percentage float64 `json:"percentage"`
 			} `json:"acSubmissionNum"`
 		} `json:"submitStatsGlobal"`
 	} `json:"matchedUser"`
@@ -60,6 +61,11 @@ func GetSubmissionStats(username string) (SubmissionData, error) {
 
 	for i := 0; i < len(respData.MatchedUser.ProblemsSolvedBeatsStats); i++ {
 		respData.MatchedUser.ProblemsSolvedBeatsStats[i].Percentage = math.Round(respData.MatchedUser.ProblemsSolvedBeatsStats[i].Percentage*10) / 10
+	}
+
+	for i := 0; i < len(respData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum); i++ {
+		percentage := float64(respData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum[i].Count) / float64(respData.AllQuestionsCount[i].Count)
+		respData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum[i].Percentage = math.Round(percentage*1000000) / 10000
 	}
 
 	return respData, nil

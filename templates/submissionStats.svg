@@ -1,5 +1,5 @@
 <svg class="top-level-svg-wrapper" xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml"
-  width="460" height="186">
+  width="400" height="186">
   <style>
     svg:not(:root) {
       overflow: hidden;
@@ -364,7 +364,7 @@
       }
     }
   </style>
-  <foreignObject x="0" y="0" width="460" height="186">
+  <foreignObject x="0" y="0" width="400" height="186">
     <div xmlns="http://www.w3.org/1999/xhtml" class="min-w-max max-w-full w-full flex-1">
       <div
         class="shadow-level3 dark:shadow-dark-level3 bg-layer-1 dark:bg-dark-layer-1 rounded-lg min-h-[186px] w-full pt-4 pb-3 lc-xl:h-[186px]">
@@ -395,7 +395,7 @@
                 <div class="absolute h-full w-full bg-green-1 dark:bg-dark-green-1"></div>
                 <div
                   class="absolute h-full rounded-full transition-all duration-300 ease-out bg-olive dark:bg-dark-olive"
-                  style="width: 11.1111%;"></div>
+                  style="width: {{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 1).Percentage}}%;"></div>
               </div>
             </div>
             <div class="space-y-2">
@@ -412,7 +412,7 @@
                 <div class="absolute h-full w-full bg-yellow-1 dark:bg-dark-yellow-1"></div>
                 <div
                   class="absolute h-full rounded-full transition-all duration-300 ease-out bg-yellow dark:bg-dark-yellow"
-                  style="width: 11.9665%;"></div>
+                  style="width: {{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 2).Percentage}}%;"></div>
               </div>
             </div>
             <div class="space-y-2">
@@ -429,7 +429,7 @@
                 <div class="absolute h-full w-full bg-red-1 dark:bg-dark-red-1"></div>
                 <div
                   class="absolute h-full rounded-full transition-all duration-300 ease-out bg-red-s dark:bg-dark-red-s"
-                  style="width: 10.6814%;"></div>
+                  style="width: {{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 3).Percentage}}%;"></div>
               </div>
             </div>
           </div>
