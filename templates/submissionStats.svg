@@ -1,5 +1,5 @@
 <svg class="top-level-svg-wrapper" xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml"
-  width="460" height="180">
+  width="460" height="186">
   <style>
     svg:not(:root) {
       overflow: hidden;
@@ -233,13 +233,11 @@
     }
 
     .bg-layer-1 {
-      --tw-bg-opacity: 1;
-      background-color: rgb(255 255 255/var(--tw-bg-opacity));
+      background-color: {{.Theme.Background}};
     }
 
     .bg-red-s {
-      --tw-bg-opacity: 1;
-      background-color: rgb(239 71 67/var(--tw-bg-opacity));
+      background-color: rgb(239 71 67);
     }
 
     .bg-red-1 {
@@ -247,13 +245,11 @@
     }
 
     .bg-olive {
-      --tw-bg-opacity: 1;
-      background-color: rgb(0 175 155/var(--tw-bg-opacity));
+      background-color: rgb(0 175 155);
     }
 
     .bg-yellow {
-      --tw-bg-opacity: 1;
-      background-color: rgb(255 184 0/var(--tw-bg-opacity));
+      background-color: rgb(255 184 0);
     }
 
     .bg-green-1 {
@@ -303,31 +299,20 @@
       line-height: 20px;
     }
 
-    .text-label-2 {
-      color: rgba(38, 38, 38, .75);
-    }
-
-    .text-brand-orange {
-      --tw-text-opacity: 1;
-      color: rgb(255 161 22/var(--tw-text-opacity));
-    }
-
     .text-label-1 {
-      --tw-text-opacity: 1;
-      color: rgb(38 38 38/var(--tw-text-opacity));
+      color: {{.Theme.Text}};
+    }
+
+    .text-label-2 {
+      color: {{.Theme.Text2}};
     }
 
     .text-label-3 {
-      color: rgba(60, 60, 67, .6);
-    }
-
-    .text-gray-4 {
-      --tw-text-opacity: 1;
-      color: rgb(223 223 223/var(--tw-text-opacity));
+      color: {{.Theme.Text3}};
     }
 
     .text-label-4 {
-      color: rgba(60, 60, 67, .3);
+      color: {{.Theme.Text4}};
     }
 
     .shadow-level3 {
@@ -379,7 +364,7 @@
       }
     }
   </style>
-  <foreignObject x="0" y="0" width="460" height="180">
+  <foreignObject x="0" y="0" width="460" height="186">
     <div xmlns="http://www.w3.org/1999/xhtml" class="min-w-max max-w-full w-full flex-1">
       <div
         class="shadow-level3 dark:shadow-dark-level3 bg-layer-1 dark:bg-dark-layer-1 rounded-lg min-h-[186px] w-full pt-4 pb-3 lc-xl:h-[186px]">
