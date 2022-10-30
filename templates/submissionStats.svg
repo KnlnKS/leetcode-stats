@@ -389,7 +389,7 @@
             <div class="shrink-1 relative max-h-[100px] max-w-[100px] z-base">
               <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center">
                 <div>
-                  <div class="text-[24px] font-medium text-label-1 dark:text-dark-label-1">282</div>
+                  <div class="text-[24px] font-medium text-label-1 dark:text-dark-label-1">{{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 0).Count}}</div>
                   <div class="whitespace-nowrap text-xs text-label-3 dark:text-dark-label-3">Solved</div>
                 </div>
               </div>
@@ -400,11 +400,11 @@
               <div class="flex w-full items-end text-xs">
                 <div class="w-[53px] text-label-3 dark:text-dark-label-3">Easy</div>
                 <div class="flex flex-1 items-center"><span
-                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">67</span><span
-                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/603</span></div>
+                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">{{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 1).Count}}</span><span
+                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/{{(index .SubmissionData.AllQuestionsCount 1).Count}}</span></div>
                 <div class="lc-lg:hidden lc-xl:inline text-label-3 dark:text-dark-label-3"><span
                     class="space-x-1.5"><span>Beats</span><span
-                      class="font-medium text-label-2 dark:text-dark-label-2">83.9%</span></span></div>
+                      class="font-medium text-label-2 dark:text-dark-label-2">{{(index .SubmissionData.MatchedUser.ProblemsSolvedBeatsStats 0).Percentage}}%</span></span></div>
               </div>
               <div class="relative h-2 w-full overflow-hidden rounded-full h-1 max-w-none">
                 <div class="absolute h-full w-full bg-green-1 dark:bg-dark-green-1"></div>
@@ -417,11 +417,11 @@
               <div class="flex w-full items-end text-xs">
                 <div class="w-[53px] text-label-3 dark:text-dark-label-3">Medium</div>
                 <div class="flex flex-1 items-center"><span
-                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">157</span><span
-                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/1312</span></div>
+                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">{{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 2).Count}}</span><span
+                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/{{(index .SubmissionData.AllQuestionsCount 2).Count}}</span></div>
                 <div class="lc-lg:hidden lc-xl:inline text-label-3 dark:text-dark-label-3"><span
                     class="space-x-1.5"><span>Beats</span><span
-                      class="font-medium text-label-2 dark:text-dark-label-2">91.9%</span></span></div>
+                      class="font-medium text-label-2 dark:text-dark-label-2">{{(index .SubmissionData.MatchedUser.ProblemsSolvedBeatsStats 1).Percentage}}%</span></span></div>
               </div>
               <div class="relative h-2 w-full overflow-hidden rounded-full h-1 max-w-none">
                 <div class="absolute h-full w-full bg-yellow-1 dark:bg-dark-yellow-1"></div>
@@ -434,11 +434,11 @@
               <div class="flex w-full items-end text-xs">
                 <div class="w-[53px] text-label-3 dark:text-dark-label-3">Hard</div>
                 <div class="flex flex-1 items-center"><span
-                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">58</span><span
-                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/543</span></div>
+                    class="mr-[5px] text-base font-medium leading-[20px] text-label-1 dark:text-dark-label-1">{{(index .SubmissionData.MatchedUser.SubmitStatsGlobal.AcSubmissionNum 3).Count}}</span><span
+                    class="text-xs font-medium text-label-4 dark:text-dark-label-4">/{{(index .SubmissionData.AllQuestionsCount 3).Count}}</span></div>
                 <div class="lc-lg:hidden lc-xl:inline text-label-3 dark:text-dark-label-3"><span
                     class="space-x-1.5"><span>Beats</span><span
-                      class="font-medium text-label-2 dark:text-dark-label-2">93.9%</span></span></div>
+                      class="font-medium text-label-2 dark:text-dark-label-2">{{(index .SubmissionData.MatchedUser.ProblemsSolvedBeatsStats 2).Percentage}}%</span></span></div>
               </div>
               <div class="relative h-2 w-full overflow-hidden rounded-full h-1 max-w-none">
                 <div class="absolute h-full w-full bg-red-1 dark:bg-dark-red-1"></div>
