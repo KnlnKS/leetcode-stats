@@ -29,6 +29,19 @@ Which will appear as:
 
 [![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&theme=dark)](https://github.com/KnlnKS/leetcode-stats)
 
+## Themes
+If you have an account on `https://leetcode.cn/` (LeetCode China),
+you can add `&cn` or `&CN` to the end of the url to show your stats on LeetCode China.
+Ex.
+
+```md
+[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&CN)](https://github.com/KnlnKS/leetcode-stats)
+```
+ or
+
+ ```md
+[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&cn)](https://github.com/KnlnKS/leetcode-stats)
+```
 
 ## GitHub Actions
 If you don't want to rely on an external api for your LeetCode stats I have provided a solution via GitHub Actions.
