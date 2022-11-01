@@ -5,6 +5,12 @@
       overflow: hidden;
     }
 
+    .top-level-svg-wrapper {
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     *,
     :after,
     :before {
@@ -333,36 +339,23 @@
       z-index: 0;
     }
 
-    @media (min-width:840px) {
-      .lc-lg\:hidden {
-        display: none;
-      }
+    .lc-xl\:mx-8 {
+      margin-left: 2rem;
+      margin-right: 2rem;
     }
 
-    @media (min-width:1200px) {
-      .lc-xl\:mx-8 {
-        margin-left: 2rem;
-        margin-right: 2rem;
-      }
-
-      .lc-xl\:inline {
-        display: inline;
-      }
-
-      .lc-xl\:h-\[186px\] {
-        height: 186px;
-      }
-
-      .lc-xl\:max-w-\[228px\] {
-        max-width: 228px;
-      }
-
-      .top-level-svg-wrapper {
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        line-height: 1.5;
-      }
+    .lc-xl\:inline {
+      display: inline;
     }
+
+    .lc-xl\:h-\[186px\] {
+      height: 186px;
+    }
+
+    .lc-xl\:max-w-\[228px\] {
+      max-width: 228px;
+    }
+
   </style>
   <foreignObject x="0" y="0" width="400" height="186">
     <div xmlns="http://www.w3.org/1999/xhtml" class="min-w-max max-w-full w-full flex-1">
