@@ -7,43 +7,20 @@ import (
 	"github.com/machinebox/graphql"
 )
 
-type SubmissionData struct {
-	AllQuestionsCount []struct {
-		Difficulty string `json:"difficulty"`
-		Count      int    `json:"count"`
-	} `json:"allQuestionsCount"`
-	MatchedUser struct {
-		ProblemsSolvedBeatsStats []struct {
-			Difficulty string  `json:"difficulty"`
-			Percentage float64 `json:"percentage"`
-		} `json:"problemsSolvedBeatsStats"`
-		SubmitStatsGlobal struct {
-			AcSubmissionNum []struct {
-				Difficulty string  `json:"difficulty"`
-				Count      int     `json:"count"`
-				Percentage float64 `json:"percentage"`
-			} `json:"acSubmissionNum"`
-		} `json:"submitStatsGlobal"`
-	} `json:"matchedUser"`
-}
-
 func GetSubmissionStats(username string) (SubmissionData, error) {
 	client := graphql.NewClient("https://leetcode.com/graphql")
 
 	req := graphql.NewRequest(`
     query userProblemsSolved($username: String!) {
 		allQuestionsCount {
-		  difficulty
 		  count
 		}
 		matchedUser(username: $username) {
 		  problemsSolvedBeatsStats {
-			difficulty
 			percentage
 		  }
 		  submitStatsGlobal {
 			acSubmissionNum {
-			  difficulty
 			  count
 			}
 		  }
