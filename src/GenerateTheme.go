@@ -10,6 +10,14 @@ type Theme struct {
 
 func GenerateTheme(theme string) Theme {
 	switch theme {
+	case "gruvbox_light":
+		reurn Theme{
+			Background: "#282828",
+			Text:       "#8EC07C",
+			Text2:      "rgba(239,241,246,.75)",
+			Text3:      "rgba(239,242,246,.6)",
+			Text4:      "rgba(235,235,245,.3)",
+		}
 	case "dark":
 		return Theme{
 			Background: "#292A2B",
