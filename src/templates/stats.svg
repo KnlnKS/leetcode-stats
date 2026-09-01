@@ -5,7 +5,7 @@
 {{- range .Segs}}<g transform="rotate({{n .Rot}} 50 50)"><circle cx="50" cy="50" r="42" fill="none" stroke-width="3" stroke-linecap="round" stroke="{{.Color}}" stroke-opacity=".2" stroke-dasharray="{{n .Track}} {{n .TrackRest}}" stroke-dashoffset="66"/><circle cx="50" cy="50" r="42" fill="none" stroke-width="3" stroke-linecap="round" stroke="{{.Color}}" stroke-dasharray="{{n .Prog}} {{n .ProgRest}}" stroke-dashoffset="66"/></g>{{end}}
 </g></g>
 <text x="156" y="89.7" text-anchor="middle" fill="{{.Fg}}"><tspan font-size="30" font-weight="600">{{.Solved}}</tspan><tspan font-size="14">/{{.Total}}</tspan></text>
-<path d="M120.9 107.2 124.2 110.6 129.4 103.2" fill="none" stroke="{{.Success}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M121.9 107.2 125.2 110.6 130.4 103.2" fill="none" stroke="{{.Success}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="156" y="112" text-anchor="middle" font-size="14" fill="{{.Fg}}">Solved</text>
 <text x="156" y="158.4" text-anchor="middle" font-size="12" fill="{{.Muted}}"><tspan font-weight="600">{{.Attempting}}</tspan><tspan>&#160;Attempting</tspan></text>
 {{- range .Pills}}
