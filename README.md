@@ -1,48 +1,53 @@
 <p align="center">
  <h1 align="center">LeetCode Readme Stats</h1>
- <p align="center">Dynamically generated LeetCode stats for your readmes!</p>
+ <p align="center">Your LeetCode profile cards, now for your readmes!</p>
 </p>
 
-## How To Use
-Copy-paste this into your markdown content, and that's it. Simple!
-Change the `?username=` value to your LeetCode username.
+## Stats card
 
 ```md
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
+[![LeetCode stats](https://leetcode-stats-six.vercel.app/KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
 ```
 
-Which will appear as:
+[![LeetCode stats](https://leetcode-stats-six.vercel.app/KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
 
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS)](https://github.com/KnlnKS/leetcode-stats)
-
-## Themes
-You can customize your card with themes! There are currently 2 themes available.
-light (default) and dark. To use them, simply add `&theme=` to the
-end of the url with the theme you'd like to use.
-Ex.
+## Submission graph
 
 ```md
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&theme=dark)](https://github.com/KnlnKS/leetcode-stats)
+[![LeetCode submissions](https://leetcode-stats-six.vercel.app/KnlnKS/graph)](https://github.com/KnlnKS/leetcode-stats)
 ```
 
-Which will appear as:
+[![LeetCode submissions](https://leetcode-stats-six.vercel.app/KnlnKS/graph)](https://github.com/KnlnKS/leetcode-stats)
 
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&theme=dark)](https://github.com/KnlnKS/leetcode-stats)
+## Options
 
-## Themes
-If you have an account on `https://leetcode.cn/` (LeetCode China),
-you can add `&cn` or `&CN` to the end of the url to show your stats on LeetCode China.
-Ex.
+| Parameter | Values | Default | |
+| --- | --- | --- | --- |
+| `theme` | `light`, `dark` | `light` | LeetCode's own two palettes |
+| `font` | `default`, `system` | `default` | `default` embeds Inter so the card looks the same everywhere; `system` drops it and cuts the response from ~32 KB to ~3 KB |
+| `cn` | flag | off | read from `leetcode.cn` instead |
+| `width` | `300`–`2000` | `836` | graph card only |
 
 ```md
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&CN)](https://github.com/KnlnKS/leetcode-stats)
-```
- or
-
- ```md
-[![KnlnKS's LeetCode stats](https://leetcode-stats-six.vercel.app/?username=KnlnKS&cn)](https://github.com/KnlnKS/leetcode-stats)
+https://leetcode-stats-six.vercel.app/KnlnKS?theme=dark
+https://leetcode-stats-six.vercel.app/KnlnKS/graph?theme=dark&width=500
+https://leetcode-stats-six.vercel.app/KnlnKS?cn
 ```
 
-## GitHub Actions
-If you don't want to rely on an external api for your LeetCode stats I have provided a solution via GitHub Actions.
-You can find it on the following branch: https://github.com/KnlnKS/leetcode-stats/tree/github-actions
+## Matching GitHub's dark mode
+
+`prefers-color-scheme` inside an SVG isn't honoured by GitHub, so pick the theme
+from the markup instead:
+
+```html
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://leetcode-stats-six.vercel.app/KnlnKS?theme=dark">
+  <img src="https://leetcode-stats-six.vercel.app/KnlnKS?theme=light">
+</picture>
+```
+
+## Credits
+
+Card design mirrors [LeetCode](https://leetcode.com). Typeface is
+[Inter](https://rsms.me/inter/) by Rasmus Andersson, under the SIL Open Font
+License 1.1 (`src/fonts/OFL.txt`).
