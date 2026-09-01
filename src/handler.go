@@ -21,7 +21,7 @@ func Serve(w http.ResponseWriter, r *http.Request, graph bool) {
 	fail := func(title, detail string) {
 		w.Header().Set("Cache-Control", "no-store")
 		var b bytes.Buffer
-		if err := RenderError(&b, theme, font, title, detail); err != nil {
+		if err := RenderError(&b, theme, systemFont, title, detail); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
