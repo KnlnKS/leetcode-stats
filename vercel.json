@@ -1,8 +1,6 @@
 {
-    "routes": [
-        {
-            "src": "/",
-            "dest": "/api"
-        }
-    ]
+  "rewrites": [
+    { "source": "/", "destination": "/api" },
+    { "source": "/:username", "destination": "/api?username=:username" }
+  ]
 }

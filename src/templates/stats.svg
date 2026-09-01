@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="410" height="180" viewBox="0 0 410 180" font-family="{{.FontFamily}}">{{.FontCSS}}
+<defs><clipPath id="ring"><path fill-rule="evenodd" d="M21.3622 21.3622C5.54592 37.1784 5.54592 62.8216 21.3622 78.6378C21.9479 79.2236 21.9479 80.1734 21.3622 80.7591C20.7764 81.3449 19.8266 81.3449 19.2408 80.7591C2.25303 63.7713 2.25303 36.2287 19.2408 19.2409C36.2286 2.25305 63.7713 2.25305 80.7591 19.2409C97.7469 36.2287 97.7469 63.7713 80.7591 80.7591C80.1733 81.3449 79.2236 81.3449 78.6378 80.7591C78.052 80.1734 78.052 79.2236 78.6378 78.6378C94.454 62.8216 94.454 37.1784 78.6378 21.3622C62.8216 5.54594 37.1784 5.54594 21.3622 21.3622Z"/></clipPath></defs>
+<rect width="410" height="180" rx="8" fill="{{.Card}}"/>
+<g transform="translate(156 100.85) scale(1.808) translate(-50 -50)"><g clip-path="url(#ring)">
+{{- range .Segs}}<g transform="rotate({{n .Rot}} 50 50)"><circle cx="50" cy="50" r="42" fill="none" stroke-width="3" stroke-linecap="round" stroke="{{.Color}}" stroke-opacity=".2" stroke-dasharray="{{n .Track}} {{n .TrackRest}}" stroke-dashoffset="66"/><circle cx="50" cy="50" r="42" fill="none" stroke-width="3" stroke-linecap="round" stroke="{{.Color}}" stroke-dasharray="{{n .Prog}} {{n .ProgRest}}" stroke-dashoffset="66"/></g>{{end}}
+</g></g>
+<text x="156" y="89.7" text-anchor="middle" fill="{{.Fg}}"><tspan font-size="30" font-weight="600">{{.Solved}}</tspan><tspan font-size="14">/{{.Total}}</tspan></text>
+<path d="M120.9 107.2 124.2 110.6 129.4 103.2" fill="none" stroke="{{.Success}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="156" y="112" text-anchor="middle" font-size="14" fill="{{.Fg}}">Solved</text>
+<text x="156" y="158.4" text-anchor="middle" font-size="12" fill="{{.Muted}}"><tspan font-weight="600">{{.Attempting}}</tspan><tspan>&#160;Attempting</tspan></text>
+{{- range .Pills}}
+<rect x="304" y="{{n .Y}}" width="90" height="44" rx="5" fill="{{$.PillBg}}"/><text x="349" y="{{n .LabelY}}" text-anchor="middle" font-size="12" font-weight="500" fill="{{.Color}}">{{.Label}}</text><text x="349" y="{{n .ValueY}}" text-anchor="middle" font-size="12" font-weight="500" fill="{{$.Fg}}">{{.Value}}</text>
+{{- end}}
+</svg>
