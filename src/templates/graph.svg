@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{n .W}}" height="{{n .H}}" viewBox="0 0 836 184" font-family="{{.FontFamily}}">{{.FontCSS}}
+<rect width="836" height="184" rx="8" fill="{{.Card}}"/>
+<text x="16" y="37"><tspan font-size="20" font-weight="500" fill="{{.Label1}}">{{c .Total}}</tspan><tspan font-size="16" fill="{{.Label2}}">&#160;submissions in the past one year</tspan></text>
+<text x="820" y="34.4" text-anchor="end" font-size="12"><tspan fill="{{.Label3}}">Total active days:</tspan><tspan font-weight="500" fill="{{.Label2}}">&#160;{{.ActiveDays}}</tspan><tspan dx="18" fill="{{.Label3}}">Max streak:</tspan><tspan font-weight="500" fill="{{.Label2}}">&#160;{{.MaxStreak}}</tspan></text>
+<svg x="18" y="60" width="800" height="107.84" viewBox="0 0 {{n .GridW}} 104.64" preserveAspectRatio="xMidYMid meet">
+{{- range .Cells}}<rect x="{{n .X}}" y="{{n .Y}}" width="8.86" height="8.86" rx="2" fill="{{.Fill}}"/>{{end}}
+{{range .Labels}}<text x="{{n .X}}" y="97.14" font-size="14" fill="#AFB4BD">{{.Text}}</text>{{end}}
+</svg>
+</svg>

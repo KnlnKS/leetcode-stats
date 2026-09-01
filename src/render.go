@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
+	"time"
 )
 
 //go:embed templates/*.svg
@@ -13,6 +14,7 @@ var templateFS embed.FS
 
 var templates = template.Must(template.New("").Funcs(template.FuncMap{
 	"n": num,
+	"c": comma,
 }).ParseFS(templateFS, "templates/*.svg"))
 
 func num(v float64) string {
@@ -24,10 +26,21 @@ func num(v float64) string {
 	return s
 }
 
+func comma(v int) string {
+	s := strconv.Itoa(v)
+	for i := len(s) - 3; i > 0; i -= 3 {
+		s = s[:i] + "," + s[i:]
+	}
+	return s
+}
+
 const (
 	circumference = 264.0
 	interGapDeg   = 8.1
 	startAngle    = 225.0
+	blockWidth    = 8.86
+	blockGap      = 11.52
+	areaGap       = 15.95
 )
 
 type Font struct {
@@ -61,6 +74,30 @@ type StatsView struct {
 	Attempting int
 	Segs       []Seg
 	Pills      []Pill
+}
+
+type Cell struct {
+	X    float64
+	Y    float64
+	Fill string
+}
+
+type MonthLabel struct {
+	X    float64
+	Text string
+}
+
+type GraphView struct {
+	Theme
+	Font
+	W          float64
+	H          float64
+	Total      int
+	ActiveDays int
+	MaxStreak  int
+	GridW      float64
+	Cells      []Cell
+	Labels     []MonthLabel
 }
 
 type ErrorView struct {
@@ -108,6 +145,66 @@ func RenderStats(w io.Writer, s Stats, th Theme, f Font) error {
 		})
 	}
 	return templates.ExecuteTemplate(w, "stats.svg", v)
+}
+
+func RenderGraph(w io.Writer, cal Calendar, th Theme, f Font, width float64, now time.Time) error {
+	v := GraphView{
+		Theme:      th,
+		Font:       f,
+		W:          width,
+		H:          width * 184 / 836,
+		Total:      cal.Total,
+		ActiveDays: cal.ActiveDays,
+		MaxStreak:  cal.MaxStreak,
+	}
+	th4 := cal.levels()
+	end := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
+	start := end.AddDate(-1, 0, 0)
+	areaX := 0.0
+	cols := 0
+	for m := time.Date(start.Year(), start.Month(), 1, 0, 0, 0, 0, time.UTC); !m.After(end); m = m.AddDate(0, 1, 0) {
+		first := m
+		if first.Before(start) {
+			first = start
+		}
+		last := m.AddDate(0, 1, -1)
+		if last.After(end) {
+			last = end
+		}
+		pad := int(first.Weekday())
+		days := int(last.Sub(first).Hours()/24) + 1
+		cols = (pad + days + 6) / 7
+		for i := 0; i < days; i++ {
+			day := first.AddDate(0, 0, i)
+			idx := pad + i
+			v.Cells = append(v.Cells, Cell{
+				X:    areaX + float64(idx/7)*blockGap,
+				Y:    float64(idx%7) * blockGap,
+				Fill: levelColor(cal.Days[day.Unix()], th4, th),
+			})
+		}
+		if days >= 14 {
+			v.Labels = append(v.Labels, MonthLabel{
+				X:    areaX + (float64(cols)-2.5)/2*blockGap,
+				Text: first.Format("Jan"),
+			})
+		}
+		areaX += float64(cols-1)*blockGap + areaGap
+	}
+	v.GridW = areaX - areaGap + blockWidth
+	return templates.ExecuteTemplate(w, "graph.svg", v)
+}
+
+func levelColor(count int, th4 [4]int, th Theme) string {
+	if count <= 0 {
+		return th.Empty
+	}
+	for i := 0; i < 4; i++ {
+		if count <= th4[i] {
+			return th.Levels[i]
+		}
+	}
+	return th.Levels[3]
 }
 
 func RenderError(w io.Writer, th Theme, f Font, title, detail string) error {

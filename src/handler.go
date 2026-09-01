@@ -6,12 +6,13 @@ import (
 	"errors"
 	"net/http"
 	"regexp"
+	"strconv"
 	"time"
 )
 
 var userPattern = regexp.MustCompile(`^[A-Za-z0-9._-]{1,64}$`)
 
-func Serve(w http.ResponseWriter, r *http.Request) {
+func Serve(w http.ResponseWriter, r *http.Request, graph bool) {
 	q := r.URL.Query()
 	theme := GetTheme(q.Get("theme"))
 	font := GetFont(q.Get("font"))
@@ -46,9 +47,17 @@ func Serve(w http.ResponseWriter, r *http.Request) {
 	defer cancel()
 
 	var b bytes.Buffer
-	stats, err := GetStats(ctx, site, user)
-	if err == nil {
-		err = RenderStats(&b, stats, theme, font)
+	var err error
+	if graph {
+		var cal Calendar
+		if cal, err = GetCalendar(ctx, site, user); err == nil {
+			err = RenderGraph(&b, cal, theme, font, graphWidth(q.Get("width")), time.Now().UTC())
+		}
+	} else {
+		var stats Stats
+		if stats, err = GetStats(ctx, site, user); err == nil {
+			err = RenderStats(&b, stats, theme, font)
+		}
 	}
 	if err != nil {
 		if errors.Is(err, ErrNotFound) {
@@ -61,4 +70,12 @@ func Serve(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Cache-Control", "public, max-age=1800, s-maxage=1800, stale-while-revalidate=86400")
 	w.Write(b.Bytes())
+}
+
+func graphWidth(raw string) float64 {
+	width, err := strconv.ParseFloat(raw, 64)
+	if err != nil {
+		return 836
+	}
+	return max(300, min(2000, width))
 }
