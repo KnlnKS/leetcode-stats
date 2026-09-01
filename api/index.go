@@ -6,4 +6,4 @@ import (
 	"leetcode-stats/src"
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) { src.Serve(w, r, false) }
+func Handler(w http.ResponseWriter, r *http.Request) { src.Serve(w, r) }

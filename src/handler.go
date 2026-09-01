@@ -7,13 +7,15 @@ import (
 	"net/http"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 )
 
 var userPattern = regexp.MustCompile(`^[A-Za-z0-9._-]{1,64}$`)
 
-func Serve(w http.ResponseWriter, r *http.Request, graph bool) {
+func Serve(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
+	user, graph := route(r.URL.Path, q.Get("username"))
 	theme := GetTheme(q.Get("theme"))
 	font := GetFont(q.Get("font"))
 	w.Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
@@ -28,7 +30,6 @@ func Serve(w http.ResponseWriter, r *http.Request, graph bool) {
 		w.Write(b.Bytes())
 	}
 
-	user := q.Get("username")
 	if user == "" {
 		fail("Missing username", "Add ?username=your-handle to the URL")
 		return
@@ -78,4 +79,19 @@ func graphWidth(raw string) float64 {
 		return 836
 	}
 	return max(300, min(2000, width))
+}
+
+func route(path, fallback string) (string, bool) {
+	segments := strings.FieldsFunc(path, func(c rune) bool { return c == '/' })
+	if len(segments) > 0 && segments[0] == "api" {
+		segments = segments[1:]
+	}
+	graph := len(segments) > 0 && segments[len(segments)-1] == "graph"
+	if graph {
+		segments = segments[:len(segments)-1]
+	}
+	if len(segments) > 0 {
+		return segments[0], graph
+	}
+	return fallback, graph
 }
